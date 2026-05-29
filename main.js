@@ -122,7 +122,7 @@ function GetCurrentShopCountOfKittens() {
 	if (Game.Has('Kitten executives')) shopCount++;
 	if (Game.Has('Kitten admins')) shopCount++;
 	if (Game.Has('Kitten angels')) shopCount++;
-	//console.log("shop count: "+shopCount);
+	//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"shop count: "+shopCount);
 	return shopCount;
 }
 
@@ -260,7 +260,7 @@ Shimeji.MoveKitten = function(kitten) {
 	
 	// Check if we've hit an edge
 	if (kitten.turningBufferExpiresAt <= Date.now() && CheckIfShimejiShouldTurnAround(targetPosition)) {
-		//console.log("Original Rotation: "+kitten.rotation+", Clockwise: "+kitten.movingClockwise);
+		//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"Original Rotation: "+kitten.rotation+", Clockwise: "+kitten.movingClockwise);
 		kitten.turningBufferExpiresAt = Date.now() + turningBufferTimeInMilliseconds; // so we dont double up on turns
 		
 		// If we've passed a threshold,
@@ -268,7 +268,7 @@ Shimeji.MoveKitten = function(kitten) {
 		
 		// 1 in 3 chance of climbing the wall
 		let chanceOutcome = Shimeji.getRandomInt(1,3);
-		//console.log("turn around bright eyes");
+		//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"turn around bright eyes");
 		
 		if (chanceOutcome <= 2) {
 			kitten.movingClockwise = !kitten.movingClockwise;
@@ -277,7 +277,7 @@ Shimeji.MoveKitten = function(kitten) {
 			ChangeClimbingSurface();
 		}
 		
-		//console.log("New Rotation: "+kitten.rotation+", Clockwise: "+kitten.movingClockwise);
+		//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"New Rotation: "+kitten.rotation+", Clockwise: "+kitten.movingClockwise);
 	}
 	else {
 		// If we've NOT hit the edge of the screen, continue moving.
@@ -323,22 +323,22 @@ Shimeji.MoveKitten = function(kitten) {
 	function ChangeClimbingSurface() {
 		if (kitten.rotation == 0) {
 			kitten.rotation = (kitten.movingClockwise) ? 90 : 270;
-			//console.log("climb up wall");
+			//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"climb up wall");
 			return;
 		}
 		else if (kitten.rotation == 90) {
 			kitten.rotation = (kitten.movingClockwise) ? 180 : 0;
-			//console.log("climb along floor or ceiling");
+			//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"climb along floor or ceiling");
 			return;
 		}
 		else if (kitten.rotation == 180) {
 			kitten.rotation = (kitten.movingClockwise) ? 270 : 90;
-			//console.log("climb down wall");
+			//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"climb down wall");
 			return;
 		}
 		else {
 			kitten.rotation = (kitten.movingClockwise) ? 0 : 180;
-			//console.log("climb along floor or ceiling");
+			//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"climb along floor or ceiling");
 			return;
 		}
 	}
@@ -379,7 +379,7 @@ Shimeji.UpdateKittenHelpers = function()
 		
 		// if no longer clicking down
 		if (kitten.clickedAtOriginPosition != null && Game.mouseDown === 0) {
-			//console.log("mouse released");
+			//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"mouse released");
 			kitten.clickedAtOriginPosition = null; // reset 'clicked at' position
 			if (kitten.currentAction === Shimeji.KittenActions.Drag) {
 				// not dragging anymore
@@ -392,7 +392,7 @@ Shimeji.UpdateKittenHelpers = function()
 			kitten.currentAction !== Shimeji.KittenActions.Fall) {
 			// If finished currentAction
 			if (Date.now() >= kitten.nextActionAvailableAt && Date.now() >= kitten.turningBufferExpiresAt) {
-				Shimeji.ChooseNewAction(kitten); //console.log("choose your player");
+				Shimeji.ChooseNewAction(kitten); //console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"choose your player");
 			}
 		}
 
@@ -461,7 +461,7 @@ Shimeji.DragHasPassedThreshold = function(originCoordinate) {
 	|| originCoordinate.y < (Game.mouseY - Shimeji.BufferBeforeDrag)
 	);
 
-	//console.log(result + " = " +originCoordinate.x + " " + originCoordinate.y + " : " + Game.mouseX + " " + Game.mouseY);
+	//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+result + " = " +originCoordinate.x + " " + originCoordinate.y + " : " + Game.mouseX + " " + Game.mouseY);
 	return result;
 }
 
@@ -470,14 +470,14 @@ Shimeji.HandleKittenHovered = function(kitten) {
 }
 
 Shimeji.HandleKittenMouseDown = function(kitten) {
-	//console.log("mousedown");
+	//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"mousedown");
 	if (kitten.clickedAtOriginPosition == null) {
 		kitten.clickedAtOriginPosition = {x: Game.mouseX, y: Game.mouseY}; // only set this the first time (in case multiple click events register for the same mousedown event
 	}
 }
 
 Shimeji.HandleKittenClicked = function(kitten) {
-	//console.log("meow click");
+	//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"meow click");
 	if (kitten.clickedAtOriginPosition == null) {
 		kitten.clickedAtOriginPosition = {x: Game.mouseX, y: Game.mouseY}; // only set this the first time (in case multiple click events register for the same mousedown event
 	}
@@ -496,13 +496,13 @@ Shimeji.HandleKittenClicked = function(kitten) {
 }
 
 Shimeji.HandleKittenDrag = function(kitten) {
-	//console.log('drag!');
+	//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+'drag!');
 	kitten.rotation = 0; // cats fall on their feet, didn't you know?
 	Shimeji.ChangeAction(kitten, Shimeji.KittenActions.Drag, 0);
 }
 
 Shimeji.HandleKittenRelease = function(kitten) {
-	//console.log('fall!');
+	//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+'fall!');
 	Shimeji.ChangeAction(kitten, Shimeji.KittenActions.Fall, 0);
 }
 
@@ -560,7 +560,7 @@ Shimeji.ChooseNewAction = function(kitten) {
 			newAction = Shimeji.KittenActions.Dream;
 			actionLength = Shimeji.getRandomInt(3, 8); // in seconds
 
-			//console.log("New action: "+newAction);
+			//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"New action: "+newAction);
 			Shimeji.ChangeAction(kitten, newAction, actionLength);
 			return;
 		}
@@ -583,7 +583,7 @@ Shimeji.ChooseNewAction = function(kitten) {
 		actionLength = Shimeji.getRandomInt(3, 8); // in seconds
 	}
 
-	//console.log("New action: "+newAction);
+	//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"New action: "+newAction);
 	Shimeji.ChangeAction(kitten, newAction, actionLength);
 }
 
@@ -621,8 +621,8 @@ Shimeji.DrawKittenHelpers = function()
 		
 		// An additional directory if we are walking or idle
 		if (kittenAction == Shimeji.KittenActions.Walk || kittenAction == Shimeji.KittenActions.Idle) {
-			//console.log("Rotation: "+kitten.rotation);
-			//console.log("Clockwise: "+kitten.movingClockwise);
+			//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"Rotation: "+kitten.rotation);
+			//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"Clockwise: "+kitten.movingClockwise);
 			switch (kitten.rotation) {
 				case 90: picDirectory += "rightwall/"; break;
 				case 180: picDirectory += "ceiling/"; break;
@@ -674,65 +674,6 @@ Shimeji.playMeowSound = function()
 	if (Shimeji.meowSound>4) Shimeji.meowSound-=4;
 }
 
-Shimeji.init = function()
-{
-    Game.Notify(Shimeji.name + ' v' + Shimeji.version + ' loaded!', '', 7);
-	console.log("Got milk?");
-
-	// Hooks
-	Game.registerHook('logic',function(){
-        Shimeji.UpdateKittenHelpers();
-    });
-
-    Game.registerHook('draw',function(){
-        Shimeji.DrawKittenHelpers();
-    });
-
-	Game.registerHook('check',function(){
-		Shimeji.CheckForNewKittenHelpers();
-	});
-
-	var _UpdateMenu = Game.UpdateMenu;
-	Game.UpdateMenu = function() {
-		_UpdateMenu();//_UpdateMenu();
-		if (Game.onMenu == 'prefs') {
-			var modsSection = null;
-			var titles = document.querySelectorAll('#menu .title');
-			for (var i = 0; i < titles.length; i++) {
-				if (titles[i].textContent.trim() === 'Mods') {
-					modsSection = titles[i].parentElement;
-					break;
-				}
-			}
-			if (modsSection) {
-				/*
-				// create button
-				var myBtn = document.createElement("div");
-				myBtn.classList.add("listing");
-				myBtn.innerHTML = "<a class='option smallFancyButton'>Pusheen Shimeji Settings</a><label>If turned off, you will be able to customise the number of Pusheen Shimeji on-screen</label>";
-
-				// add button to menu
-				const modsTitle = modsSection.querySelector('.subsection .title');
-				modsTitle.insertAdjacentElement('afterend', myBtn);
-				*/
-
-				var modsTitle = modsSection.querySelector('.title');
-			    var wrapper = document.createElement('div');
-			    wrapper.id = 'pusheenSettingsWrap';
-			    wrapper.innerHTML = buildPusheenSettingsHTML();
-			    modsTitle.insertAdjacentElement('afterend', wrapper);
-			}
-			else {
-				console.log("did not find mod section");
-			}
-		}
-	};
-
-	// Called on mod init
-	Shimeji.CheckForNewKittenHelpers();
-
-}
-
 // --- Pusheen Shimeji Settings state ---
 var pusheenMatchKittensToShopCount = true;  // default: match kitten helpers
 var pusheenCustomCount = 5;      // default custom count
@@ -781,7 +722,7 @@ function UpdateNumberOfPusheenKittensToMatchCustomSetting() {
 		return; //early out
 	}
 	if (Shimeji.kittenHelpers.length < pusheenCustomCount) {
-		//console.log("spawn more kittens - custom count");
+		//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"spawn more kittens - custom count");
 		var difference = pusheenCustomCount - Shimeji.kittenHelpers.length;
 		for (var i = 0; i < difference; i++)
 		{
@@ -789,11 +730,11 @@ function UpdateNumberOfPusheenKittensToMatchCustomSetting() {
 		}
 	}
 	else if (pusheenCustomCount < Shimeji.kittenHelpers.length) {
-		//console.log("delete more kittens - custom count");
+		//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"delete more kittens - custom count");
 		var difference = Shimeji.kittenHelpers.length - pusheenCustomCount;
 		Shimeji.RemoveKittens(difference);
 	}
-	console.log('Pusheens in game updated to:', Shimeji.kittenHelpers.length);
+	console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+'Pusheens in game updated to:', Shimeji.kittenHelpers.length);
 }
 
 function UpdateNumberOfPusheenKittensToMatchShop() {
@@ -801,16 +742,89 @@ function UpdateNumberOfPusheenKittensToMatchShop() {
 		return; //early out
 	}
 	if (Shimeji.kittenHelpers.length > GetCurrentShopCountOfKittens()) {
-		//console.log("delete kittens - match shop count");
+		//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"delete kittens - match shop count");
 		var difference = Shimeji.kittenHelpers.length - GetCurrentShopCountOfKittens();
 		Shimeji.RemoveKittens(difference);
 	}
 	else {
-		//console.log("spawn more kittens - match shop count");
+		//console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"spawn more kittens - match shop count");
 		Shimeji.CheckForNewKittenHelpers();
 	}
-	console.log('Pusheens in game updated to:', Shimeji.kittenHelpers.length);
+	console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+'Pusheens in game updated to:', Shimeji.kittenHelpers.length);
 }
 
+
+// --- Pusheen Shimeji init ---
+
+Shimeji.init = function()
+{
+    Game.Notify(Shimeji.name + ' v' + Shimeji.version + ' loaded!', '', 7);
+	console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"Got milk?");
+
+    // Hooks
+	Game.registerHook('logic',function(){
+        Shimeji.UpdateKittenHelpers();
+    });
+
+    Game.registerHook('draw',function(){
+        Shimeji.DrawKittenHelpers();
+    });
+
+	Game.registerHook('check',function(){
+		Shimeji.CheckForNewKittenHelpers();
+	});
+
+	var _UpdateMenu = Game.UpdateMenu;
+	Game.UpdateMenu = function() {
+		_UpdateMenu();
+		if (Game.onMenu == 'prefs') {
+			var modsSection = null;
+			var titles = document.querySelectorAll('#menu .title');
+			for (var i = 0; i < titles.length; i++) {
+				if (titles[i].textContent.trim() === 'Mods') {
+					modsSection = titles[i].parentElement;
+					break;
+				}
+			}
+			if (modsSection) {
+				var modsTitle = modsSection.querySelector('.title');
+			    var wrapper = document.createElement('div');
+			    wrapper.id = 'pusheenSettingsWrap';
+			    wrapper.innerHTML = buildPusheenSettingsHTML();
+			    modsTitle.insertAdjacentElement('afterend', wrapper);
+			}
+			else {
+				console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"did not find mod section");
+			}
+		}
+	};
+
+	// Called on mod init
+	Shimeji.CheckForNewKittenHelpers();
+
+}
+Shimeji.save = function(){
+	console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"save mod settings");
+
+	return JSON.stringify({
+        matchKittens: pusheenMatchKittensToShopCount,
+        customCount: pusheenCustomCount
+    	});
+}
+
+Shimeji.load = function(str){
+	console.log("[Pusheen Shimeji Mod - ID: shimejiMod] "+"load & apply mod settings");
+
+	var data = JSON.parse(str);
+    pusheenMatchKittensToShopCount = data.matchKittens;
+    pusheenCustomCount = data.customCount;
+
+    if (pusheenMatchKittensToShopCount) {
+    	UpdateNumberOfPusheenKittensToMatchShop();
+    }
+    else {
+    	UpdateNumberOfPusheenKittensToMatchCustomSetting();
+    }
+}
 
 Game.registerMod(Shimeji.modid, Shimeji);
