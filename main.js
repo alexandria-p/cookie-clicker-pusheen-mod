@@ -14,7 +14,7 @@ if(Shimeji === undefined)
 
 Shimeji.modid = 'shimejiMod';
 Shimeji.name = 'Pusheen Cat Desktop Buddy (Shimeji) Mod';
-Shimeji.version = '0.9';
+Shimeji.version = '0.902';
 Shimeji.GameVersion = '2.043';
 
 Shimeji.kittenHelpers = [];
@@ -300,8 +300,7 @@ Shimeji.UpdateKittenHelpers = function()
 	var maxWidth=ctx.canvas.width - Shimeji.kittenSize;
 	var maxHeight=ctx.canvas.height - Shimeji.kittenSize;
 
-	var defaultX = 0;
-	var defaultY = maxHeight;
+
 
 	var onKitten=0;
 
@@ -309,11 +308,18 @@ Shimeji.UpdateKittenHelpers = function()
 	{
 		var kitten=Shimeji.kittenHelpers[i];
 
-		if (kitten.x == null) {
-			kitten.x = defaultX;
-		}
-		if (kitten.y == null) {
-			kitten.y = defaultY;
+		if (kitten.x == null || kitten.y == null) {
+			var horizontalCentre = maxWidth/2;
+			var randomHorizontalSpawnSlot = Shimeji.getRandomInt(-3, 3);
+			var horizontalPos = horizontalCentre + (randomHorizontalSpawnSlot * Shimeji.kittenSize);
+			// clamp values
+			if (horizontalPos > maxWidth) horizontalPos = maxWidth;
+			if (horizontalPos < 0) horizontalPos = 0;
+
+			var kittenSpawnPoint = {x: horizontalPos, y: 0 - Shimeji.kittenSize};
+
+			kitten.x = kittenSpawnPoint.x;
+			kitten.y = kittenSpawnPoint.y;
 		}
 		
 		// if no longer clicking down
@@ -372,7 +378,6 @@ Shimeji.UpdateKittenHelpers = function()
 				&& kitten.currentAction != Shimeji.KittenActions.Drag
 				&& kitten.currentAction != Shimeji.KittenActions.Fall) // only squeak if we weren't dragging
 			{
-				// THIS IS A CLICK & RELEASE!
 				Shimeji.HandleKittenClicked(kitten);
 				Game.Click=0;
 			}
@@ -551,7 +556,7 @@ Shimeji.DrawKittenHelpers = function()
 		ctx.save();
 		
 		// Find kitten type
-		var kittenType = 1; // TODO - different sprites for different kitten.type;
+		var kittenType = 1; // Future improvement - different sprites for different kitten.type ?;
 		
 		// Find current action
 		var kittenAction = kitten.currentAction;
@@ -559,7 +564,7 @@ Shimeji.DrawKittenHelpers = function()
 		// Start building up the directory to find our animation
 		var picDirectory = `${this.dir}/kittens/${kittenType}/${kittenAction}/`;
 		
-		// An additional directory if we are walking
+		// An additional directory if we are walking or idle
 		if (kittenAction == Shimeji.KittenActions.Walk || kittenAction == Shimeji.KittenActions.Idle) {
 			//console.log("Rotation: "+kitten.rotation);
 			//console.log("Clockwise: "+kitten.movingClockwise);

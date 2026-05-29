@@ -1,12 +1,15 @@
 {
- "Name": "Pusheen Cat Desktop Buddy (Shimeji) Mod",
- "ID": "shimejiMod",
- "Author": "AlexandriaP",
- "Description": "When you unlock your kitten helpers, they'll be right there alongside you to cheer you and your cookie empire on! A fun, cosmetic addition only - allows Steam Achievements.",
- "ModVersion": 0.9,
- "GameVersion": 2.043,
- "Date": "17/07/2022",
- "Disabled": 1,
- "AllowSteamAchievs": 1,
- "Workshop": "2837315728"
+	"Name": "Pusheen Cat Desktop Buddy (Shimeji) Mod",
+	"ID": "shimejiMod",
+	"Author": "HumbleKraken",
+	"Description": "When you unlock your kitten helpers, they'll be right there alongside you to cheer you and your cookie empire on!
+
+Pusheen will climb around your screen, and daydreams about food.
+
+A cute, cosmetic addition only - allows Steam Achievements.",
+	"ModVersion": 0.902,
+	"GameVersion": 2.043,
+	"Date": "17/07/2022",
+	"Disabled": 1,
+	"AllowSteamAchievs":1
 }
