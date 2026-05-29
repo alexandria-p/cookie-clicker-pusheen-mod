@@ -4,8 +4,8 @@
 	"Author": "HumbleKraken",
 	"Description": "When you unlock your kitten helpers, they'll be right there alongside you to cheer you and your cookie empire on! Pusheen will climb around your screen, and daydreams about food. A cute, cosmetic addition only - allows Steam Achievements.",
 	"ModVersion": 1.000,
-	"GameVersion": 2.043,
+	"GameVersion": 2.053,
 	"Date": "29/05/2026",
-	"Disabled": 1,
+	"Disabled": 0,
 	"AllowSteamAchievs":1
 }
