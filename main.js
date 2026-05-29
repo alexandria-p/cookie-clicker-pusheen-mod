@@ -70,79 +70,116 @@ Shimeji.InSquare = function(mouseX,mouseY,rect)
     return false;
 }
 
+
+Shimeji.RemoveKittens = function(numForRemoval) 
+{
+    // remove angels first, 
+    // then just pop.
+
+    var numRemoved = 0;
+	Shimeji.kittenHelpers = Shimeji.kittenHelpers.filter(function(k) {
+        if (numRemoved < numForRemoval && k.type === Shimeji.KittenTypes.Angels) {
+            numRemoved++;
+            console.log(numRemoved);
+            return false;
+        }
+        return true;
+    });
+
+	var difference = numForRemoval - numRemoved;
+    if (difference > 0) {
+    	for (var i = 0; i < difference; i++)
+		{
+			Shimeji.kittenHelpers.pop();
+		}
+    }
+    
+}
+
+function AreKittensUnderMaxCount()
+{
+	if (pusheenMatchKittens) {
+		return (Shimeji.kittenHelpers.length < maxPusheen);
+	}
+	else {
+		return (Shimeji.kittenHelpers.length < pusheenCustomCount);
+	}
+}
+
+
 Shimeji.CheckForNewKittenHelpers = function()
 {	
-	if (Game.Has('Kitten helpers') 
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten helpers') 
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Helpers; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Helpers);
 	}
-	if (Game.Has('Kitten workers')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten workers')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Workers; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Workers);
 	}
-	if (Game.Has('Kitten engineers')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten engineers')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Engineers; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Engineers);
 	}
-	if (Game.Has('Kitten overseers')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten overseers')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Overseers; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Overseers);
 	}
-	if (Game.Has('Kitten managers')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten managers')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Managers; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Managers);
 	}
-	if (Game.Has('Kitten accountants')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten accountants')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Accountants; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Accountants);
 	}
-	if (Game.Has('Kitten specialists')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten specialists')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Specialists; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Specialists);
 	}
-	if (Game.Has('Kitten experts')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten experts')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Experts; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Experts);
 	}
-	if (Game.Has('Kitten consultants')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten consultants')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Consultants; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Consultants);
 	}
-	if (Game.Has('Kitten assistants to the regional manager')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten assistants to the regional manager')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Assistants; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Assistants);
 	}
-	if (Game.Has('Kitten marketeers')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten marketeers')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Marketeers; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Marketeers);
 	}
-	if (Game.Has('Kitten analysts')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten analysts')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Analysts; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Analysts);
 	}
-	if (Game.Has('Kitten executives')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten executives')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Executives; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Executives);
 	}
-	if (Game.Has('Kitten admins')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten admins')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Admins; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Admins);
 	}
-	if (Game.Has('Kitten angels')
+	if (AreKittensUnderMaxCount() && Game.Has('Kitten angels')
 		&& (Shimeji.kittenHelpers.filter(function(k) { return k.type === Shimeji.KittenTypes.Angels; }).length === 0))
 	{
 		Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Angels);
@@ -171,7 +208,7 @@ Shimeji.SpawnKittenHelper = function(type)
 		});
 }
 
-
+// todo - I think there is a miscalculation at the top of the screen... ceiling
 Shimeji.MoveKitten = function(kitten) {
 	// Rotation can be:
 	// 0 - walking along floor
@@ -301,7 +338,6 @@ Shimeji.UpdateKittenHelpers = function()
 	var maxHeight=ctx.canvas.height - Shimeji.kittenSize;
 
 
-
 	var onKitten=0;
 
 	for (var i in Shimeji.kittenHelpers)
@@ -316,10 +352,9 @@ Shimeji.UpdateKittenHelpers = function()
 			if (horizontalPos > maxWidth) horizontalPos = maxWidth;
 			if (horizontalPos < 0) horizontalPos = 0;
 
-			var kittenSpawnPoint = {x: horizontalPos, y: 0 - Shimeji.kittenSize};
-
-			kitten.x = kittenSpawnPoint.x;
-			kitten.y = kittenSpawnPoint.y;
+			// default spawn somewhere along the bottom (floor) on the screen
+			kitten.x = horizontalPos;
+			kitten.y = maxHeight;
 		}
 		
 		// if no longer clicking down
@@ -628,7 +663,7 @@ Shimeji.init = function()
 	Game.registerHook('logic',function(){
         Shimeji.UpdateKittenHelpers();
     });
-	
+
     Game.registerHook('draw',function(){
         Shimeji.DrawKittenHelpers();
     });
@@ -636,9 +671,123 @@ Shimeji.init = function()
 	Game.registerHook('check',function(){
 		Shimeji.CheckForNewKittenHelpers();
 	});
-	
+
+	var _UpdateMenu = Game.UpdateMenu;
+	Game.UpdateMenu = function() {
+		_UpdateMenu();//_UpdateMenu();
+		if (Game.onMenu == 'prefs') {
+			var modsSection = null;
+			var titles = document.querySelectorAll('#menu .title');
+			for (var i = 0; i < titles.length; i++) {
+				if (titles[i].textContent.trim() === 'Mods') {
+					modsSection = titles[i].parentElement;
+					break;
+				}
+			}
+			if (modsSection) {
+				/*
+				// create button
+				var myBtn = document.createElement("div");
+				myBtn.classList.add("listing");
+				myBtn.innerHTML = "<a class='option smallFancyButton'>Pusheen Shimeji Settings</a><label>If turned off, you will be able to customise the number of Pusheen Shimeji on-screen</label>";
+
+				// add button to menu
+				const modsTitle = modsSection.querySelector('.subsection .title');
+				modsTitle.insertAdjacentElement('afterend', myBtn);
+				*/
+
+				var modsTitle = modsSection.querySelector('.title');
+			    var wrapper = document.createElement('div');
+			    wrapper.id = 'pusheenSettingsWrap';
+			    wrapper.innerHTML = buildPusheenSettingsHTML();
+			    modsTitle.insertAdjacentElement('afterend', wrapper);
+			}
+			else {
+				console.log("did not find mod section");
+			}
+		}
+	};
+
 	// Called on mod init
 	Shimeji.CheckForNewKittenHelpers();
+
 }
+
+// --- Pusheen Shimeji Settings state ---
+var pusheenMatchKittens = true;  // default: match kitten helpers
+var pusheenCustomCount = 5;      // default custom count
+var maxPusheen = 15; // number of supported kitten types in this mod (see: CheckForNewKittenHelpers method)
+
+function buildPusheenSettingsHTML() {
+    var html = '<div class="listing">';
+    
+    // Toggle button - matches Cookie Clicker's ON/OFF button style
+    html += '<a class="option smallFancyButton" id="pusheenMatchToggle" onclick="pusheenToggleMatch();PlaySound(\'snd/tick.mp3\');">'
+          + (pusheenMatchKittens ? 'Match kitten helpers ON' : 'Match kitten helpers OFF')
+          + '</a>';
+    html += ' <label>match number of pusheen to kitten helpers bought in Store</label>';
+    
+    // Slider - only shown when match is OFF
+    if (!pusheenMatchKittens) {
+        html += '<div class="listing" id="pusheenSliderWrap" style="margin-top:4px;">';
+        html += '<b>Custom pusheen count: <span id="pusheenCountDisplay">' + pusheenCustomCount + '</span></b><br>';
+        html += '<input type="range" min="0" max="'+ maxPusheen +'" value="' + pusheenCustomCount + '" '
+              + 'oninput="pusheenCustomCount=parseInt(this.value);document.getElementById(\'pusheenCountDisplay\').textContent=this.value;pusheenApply();" '
+              + 'style="width:200px;vertical-align:middle;">';
+        html += '</div>';
+    }
+    
+    html += '</div>';
+    return html;
+}
+
+function pusheenToggleMatch() {
+    pusheenMatchKittens = !pusheenMatchKittens;
+    var wrap = document.getElementById('pusheenSettingsWrap');
+    if (wrap) wrap.innerHTML = buildPusheenSettingsHTML();
+    pusheenApply();
+}
+
+function pusheenApply() {
+    if (pusheenMatchKittens) {
+        console.log('Pusheen count set to:', Shimeji.kittenHelpers.length);
+    }
+    else {
+    	console.log('Pusheen count set to:', pusheenCustomCount);
+    }
+    
+    UpdateNumberOfPusheenKittens();
+    console.log('Pusheens in game updated to:', Shimeji.kittenHelpers.length);
+}
+
+function UpdateNumberOfPusheenKittens() {
+	if (pusheenMatchKittens) {
+		if (pusheenCustomCount > Shimeji.kittenHelpers.length) {
+			//console.log("delete kittens - match shop count");
+			var difference = Shimeji.kittenHelpers.length - pusheenCustomCount;
+			Shimeji.RemoveKittens(difference);
+		}
+		else {
+			//console.log("spawn more kittens - match shop count");
+			Shimeji.CheckForNewKittenHelpers();
+		}
+	}
+	else {
+		if (Shimeji.kittenHelpers.length < pusheenCustomCount) {
+			//console.log("spawn more kittens - custom count");
+			var difference = pusheenCustomCount - Shimeji.kittenHelpers.length;
+			for (var i = 0; i < difference; i++)
+			{
+				Shimeji.SpawnKittenHelper(Shimeji.KittenTypes.Angels); // hack in case they want more kittens than they've unlocked in the shop.
+			}
+		}
+		else if (pusheenCustomCount < Shimeji.kittenHelpers.length) {
+			//console.log("delete more kittens - custom count");
+			var difference = Shimeji.kittenHelpers.length - pusheenCustomCount;
+			Shimeji.RemoveKittens(difference);
+		}
+	}
+}
+
 
 Game.registerMod(Shimeji.modid, Shimeji);
